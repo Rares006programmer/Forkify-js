@@ -57,10 +57,7 @@ function updateServings(servings) {
 	if (servings < 1) return;
 	const ingrQntOneServ = state.recipe.ingredients.map((ingredient) => ingredient.quantity / state.recipe.servings);
 	state.recipe.servings = servings;
-	state.recipe.ingredients.forEach((ingredient, index) => {
-		ingredient.quantity = ingrQntOneServ[index] * state.recipe.servings;
-		if (state.recipe.userGenerated) ingredient.quantity = Number(ingredient.quantity.toFixed(1)) || "";
-	});
+	state.recipe.ingredients.forEach((ingredient, index) => (ingredient.quantity = ingrQntOneServ[index] * state.recipe.servings));
 }
 
 function addBookmark(recipe = state.recipe) {
